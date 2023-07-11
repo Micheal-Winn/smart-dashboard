@@ -5,22 +5,28 @@ import Link from "next/link";
 import { IconArrowNarrowDown,IconChevronUp,IconChevronDown } from "@tabler/icons-react";
 import { MobileNavLists } from "@/Type";
 import { usePathname } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 const NavLinkGroup: React.FC<SubMenuProps> = ({ data }) => {
+  const router = useRouter();
   const [subNav, setSubNav] = useState(false);
   const openSubHandler = () => setSubNav(!subNav);
+  const routeHandler = ()=> router.push(`${data.path}`)
   const pathname = usePathname();
   console.log("path",pathname)
   console.log("render SubMenu")
   return (
     <ul className="flex flex-col w-full  text-md">
       <li
-        className={`flex rounded-md  w-full justify-between items-center sm:text-[0.57rem] md:text-[0.6rem] lg:text-[0.7rem] xl:text-sm 2xl:text-base   py-2 px-2 ${pathname === data.path ? 'bg-blue-400 text-white': ''}`}
-        onClick={data.nested !== undefined ? openSubHandler : undefined}
+        className={`flex rounded-md  w-full justify-between items-center cursor-pointer sm:text-[0.57rem] md:text-[0.6rem] lg:text-[0.7rem] xl:text-sm 2xl:text-base   py-2 px-2 ${pathname === data.path ? 'bg-blue-400 text-white': ''}`}
+        onClick={data.nested !== undefined ? openSubHandler : routeHandler}
       >
-        
-        <Link href={""}>{data.name} </Link>
-        {data.nested !== undefined && (subNav ? <IconChevronUp className="text-gray-400" size={"0.8rem"}/> : <IconChevronDown className="text-gray-400" size={"0.8rem"}/>)}
+        <div className="flex gap-2 items-center">
+          {data.leftIcon}
+          <span>{data.name}</span>
+        </div>
+        {/* <Link href={""}>{data.name} </Link> */}
+        {data.nested !== undefined && (subNav ? <IconChevronUp className="text-gray-400 cursor-pointer" size={"0.8rem"}/> : <IconChevronDown className="text-gray-400" size={"0.8rem"}/>)}
       </li>
 
       {data.nested !== undefined && data.nested.length > 0 && subNav && (
