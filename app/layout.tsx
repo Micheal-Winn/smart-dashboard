@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className={`${poppins.className} overflow-hidden`}>
         <main className="flex h-screen min-[2000px]:container">
           <Sidebar/>
-          <section className="w-[calc(100vw-230px)] !overflow-hidden h-screen">
+          <section className="sm:w-[calc(100vw-200px)]  xl:w-[calc(100vw-280px)] 2xl:w-[calc(100vw-300px)] 3xl:w-[calc(100vw-320px)] !overflow-hidden h-screen">
             {children}
           </section>
         </main>

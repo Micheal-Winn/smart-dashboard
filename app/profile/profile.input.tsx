@@ -12,9 +12,9 @@ const ProfileInput:React.FC<LabelProps> = ({
           name={name}
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold sm:text-[0.6rem] md:text-[0.7rem] xl:text-[0.8rem] tracking-wide">{label}</FormLabel>
+              <FormLabel className="font-semibold text-slate-500 sm:text-[0.73rem] md:text-[0.7rem] xl:text-[0.8rem] tracking-wide">{label}</FormLabel>
               <FormControl>
-                <Input placeholder={`${placeholder}`} {...field} />
+                <Input className='placeholder:text-sm text-sm' placeholder={`${placeholder}`} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

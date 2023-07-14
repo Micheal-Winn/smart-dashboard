@@ -18,7 +18,7 @@ const NavLinkGroup: React.FC<SubMenuProps> = ({ data }) => {
   return (
     <ul className="flex flex-col w-full  text-md">
       <li
-        className={`flex rounded-md  w-full justify-between items-center cursor-pointer sm:text-[0.57rem] md:text-[0.6rem] lg:text-[0.7rem] xl:text-sm 2xl:text-base   py-2 px-2 ${pathname === data.path ? 'bg-blue-400 text-white': ''}`}
+        className={`flex rounded-md  w-full justify-between items-center cursor-pointer sm:text-[0.57rem] md:text-[0.6rem] lg:text-[0.7rem] xl:text-sm 2xl:text-md   py-2 px-2 ${pathname === data.path ? 'bg-blue-400 text-white': ''}`}
         onClick={data.nested !== undefined ? openSubHandler : routeHandler}
       >
         <div className="flex gap-2 items-center">

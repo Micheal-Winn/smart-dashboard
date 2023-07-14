@@ -4,9 +4,9 @@ import { IconChevronRight } from "@tabler/icons-react";
 
 const UserProfileButton = () => {
   return (
-    <div className="flex items-center justify-between cursor-pointer">
-      <div className="flex items-center gap-2">
-        <Avatar className="w-12 h-12">
+    <section className="flex items-center justify-between cursor-pointer">
+      <section className="flex items-center gap-2">
+        <Avatar className="sm:w-8 sm:h-8">
           <AvatarImage
             src="/images/profile-photo.avif"
             alt="profile"
@@ -15,14 +15,14 @@ const UserProfileButton = () => {
           <AvatarFallback>TZ</AvatarFallback>
         </Avatar>
         <div>
-          <h2 className="text-sm">Thant Zin Win</h2>
-          <p className="text-[0.7rem] text-gray-500">
+          <h2 className="sm:text-xs">Thant Zin Win</h2>
+          <p className="sm:text-[0.5rem] text-gray-500">
             thant.zin.windev@gamil.com
           </p>
         </div>
-      </div>
-      <IconChevronRight className="w-4 h-4 text-gray-500" />
-    </div>
+      </section>
+      <IconChevronRight className="sm:w-3 sm:h-3 text-gray-500" />
+    </section>
   );
 };
 

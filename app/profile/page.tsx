@@ -1,6 +1,6 @@
 "use client";
 import { Separator } from "@/components/ui/separator";
-import React from "react";
+import React, { useState } from "react";
 import ProfileInput from "./profile.input";
 
 //shadcn Form
@@ -8,6 +8,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
+import ProfilePhotos from "@/components/profileComponents/profile.photos";
+import { DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { IconLogout } from "@tabler/icons-react";
+
+//Image state
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -39,7 +45,30 @@ const FormSchema = z.object({
     .min(2, { message: "Township must be at least 2 characters" }),
 });
 
-const page = () => {
+const ProfilePage = () => {
+  const [base64ProfileUrl, setBase64ProfileUrl] = useState<string>("");
+  const [base64BackgroundUrl, setBase64BackgroundUrl] = useState<string>("");
+  const profileHandler = (data: any) => {
+    console.log("imagedata", data);
+    if (data) {
+      const file = data.target.files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setBase64ProfileUrl(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  const backgroundHandler = (data: any) => {
+    if (data) {
+      const file = data.target.files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setBase64BackgroundUrl(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -48,17 +77,17 @@ const page = () => {
   function onSubmit(data: z.infer<typeof FormSchema>) {}
 
   return (
-    <div className="bg-slate-50 h-screen">
+    <main className="bg-slate-50 h-screen">
       <Form {...form}>
-        <form className="pt-6 pl-4 xl:pl-3 pr-2 sm:pr-5 pb-5 mb-4  xl:pb-10 mt-4 xl:mr-10 2xl:mr-20 shadow-slate-300 shadow-lg mx-3 bg-white rounded-lg">
+        <form className="pt-6 pl-4 xl:pl-3 pr-2 sm:pr-5 pb-2 mb-4  xl:pb-2 mt-4 xl:mr-10 2xl:mr-20 shadow-slate-300 shadow-lg mx-3 bg-white rounded-lg ">
           <h3 className="font-semibold sm:text-base md:text-lg xl:text-2xl">
             Profile Information
           </h3>
-          <div className="flex gap-4 flex-col lg:flex-row">
-            <div className="w-full lg:w-[70%]">
+          <section className="flex gap-4 flex-col lg:flex-row">
+            <section className="w-full lg:w-[70%]">
               <Separator className="my-3" />
               <div className="xl:ml-8">
-                <div className="grid grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-4">
+                <div className="grid md:grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-4">
                   <ProfileInput
                     name="username"
                     control={form.control}
@@ -78,10 +107,10 @@ const page = () => {
                     placeholder="Enter your Phone Number"
                   />
                 </div>
-                <h3 className="my-4 text-black font-semibold tracking-wide text-xs xl:text-base">
+                <h3 className="my-4 text-black font-semibold tracking-wide text-sm xl:text-base">
                   Personal Work
                 </h3>
-                <div className="grid grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-4">
+                <div className="grid md:grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-4">
                   <ProfileInput
                     name="department"
                     control={form.control}
@@ -117,8 +146,8 @@ const page = () => {
                   {" "}
                   Personal Address
                 </h3>
-                <div className="grid grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-4">
-                <ProfileInput
+                <div className="grid md:grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-4">
+                  <ProfileInput
                     name="address"
                     control={form.control}
                     label="Address"
@@ -135,16 +164,29 @@ const page = () => {
                     control={form.control}
                     label="Township"
                     placeholder="Enter your Township"
-                  /> 
+                  />
                 </div>
               </div>
-            </div>
-            <div className=" w-full lg:w-[30%]"></div>
-          </div>
+            </section>
+            <section className=" w-full lg:w-[30%]">
+              <ProfilePhotos
+                profileUrl={base64ProfileUrl}
+                profileHandler={profileHandler}
+                backgroundUrl={base64BackgroundUrl}
+                backgroundHandler={backgroundHandler}
+              />
+            </section>
+          </section>
+          <section className="flex items-center justify-between ml-auto w-[230px] mt-2">
+            <Button className="bg-red-500  hover:bg-red-600 text-xs py-1 sm:py-1" type="button">
+              <IconLogout className="w-5 h-5 mr-2" />
+              LogOut</Button>
+            <Button   className="bg-blue-700 hover:bg-blue-600 text-xs px-4 sm:py-1" type="submit">Save Profile</Button>
+          </section>
         </form>
       </Form>
-    </div>
+    </main>
   );
 };
 
-export default page;
+export default ProfilePage;
