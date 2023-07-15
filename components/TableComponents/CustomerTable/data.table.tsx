@@ -70,7 +70,7 @@ export function CustomerDataTable<TData, TValue>({
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
                 key={headerGroup.id}
-                className="text-[0.65rem] 2xl:text-sm"
+                className="text-[0.6rem] 2xl:text-sm"
               >
                 {headerGroup.headers.map((header) => {
                   return (

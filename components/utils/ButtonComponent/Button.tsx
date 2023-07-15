@@ -8,6 +8,7 @@ const ButtonUtil: React.FC<ButtonProps> = ({
   className,
   disabled,
   type,
+  icon
 }) => {
   return (
     <Button
@@ -16,7 +17,8 @@ const ButtonUtil: React.FC<ButtonProps> = ({
       type={type}
       className={cn("sm:px-8 xl:px-10 border-[1px] border-blue-600 sm:text-xs", className)}
     >
-      {name}
+      {icon}
+      <span>{name}</span>
     </Button>
   );
 };
@@ -24,8 +26,9 @@ const ButtonUtil: React.FC<ButtonProps> = ({
 export default ButtonUtil;
 interface ButtonProps {
   name: string;
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
   disabled?: boolean;
   type?: "button" | "submit" | "reset";
+  icon?:React.ReactNode
 }
