@@ -11,7 +11,7 @@ import { Form } from "@/components/ui/form";
 import ProfilePhotos from "@/components/profileComponents/profile.photos";
 import { DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { IconLogout } from "@tabler/icons-react";
+import { IconLogout ,IconUser,IconUserCircle} from "@tabler/icons-react";
 
 //Image state
 
@@ -74,12 +74,14 @@ const ProfilePage = () => {
     resolver: zodResolver(FormSchema),
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {}
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+    console.log("data",data)
+  }
 
   return (
     <main className="bg-slate-50 h-screen">
       <Form {...form}>
-        <form className="pt-6 pl-4 xl:pl-3 pr-2 sm:pr-5 pb-2 mb-4  xl:pb-2 mt-4 xl:mr-10 2xl:mr-20 shadow-slate-300 shadow-lg mx-3 bg-white rounded-lg ">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="pt-6 pl-4 xl:pl-3 pr-2 sm:pr-5 pb-2 mb-4  xl:pb-2 mt-4 xl:mr-10 2xl:mr-20 shadow-slate-300 shadow-lg mx-3 bg-white rounded-lg ">
           <h3 className="font-semibold sm:text-base md:text-lg xl:text-2xl">
             Profile Information
           </h3>
@@ -177,11 +179,13 @@ const ProfilePage = () => {
               />
             </section>
           </section>
-          <section className="flex items-center justify-between ml-auto w-[230px] mt-2">
+          <section className="flex items-center justify-between ml-auto sm:w-[230px] 2xl:w-[260px] my-2">
             <Button className="bg-red-500  hover:bg-red-600 text-xs py-1 sm:py-1" type="button">
-              <IconLogout className="w-5 h-5 mr-2" />
+              <IconLogout className=" sm:w-3 sm:h-3 lg:w-4   lg:h-4 mr-2" />
               LogOut</Button>
-            <Button   className="bg-blue-700 hover:bg-blue-600 text-xs px-4 sm:py-1" type="submit">Save Profile</Button>
+            <Button   className="bg-blue-700 hover:bg-blue-600 text-xs px-4 sm:py-1" type="submit">
+              <IconUserCircle className=" sm:w-3 sm:h-3 lg:w-4   lg:h-4 mr-2" />
+              Save Profile</Button>
           </section>
         </form>
       </Form>

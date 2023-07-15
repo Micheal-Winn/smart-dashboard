@@ -1,10 +1,13 @@
+"use client"
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { IconChevronRight } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 
 const UserProfileButton = () => {
+  const router = useRouter();
   return (
-    <section className="flex items-center justify-between cursor-pointer">
+    <section className="flex items-center justify-between cursor-pointer" onClick={()=>router.push('/profile')}>
       <section className="flex items-center gap-2">
         <Avatar className="sm:w-8 sm:h-8">
           <AvatarImage

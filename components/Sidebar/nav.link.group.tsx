@@ -18,7 +18,7 @@ const NavLinkGroup: React.FC<SubMenuProps> = ({ data }) => {
   return (
     <ul className="flex flex-col w-full  text-md">
       <li
-        className={`flex rounded-md  w-full justify-between items-center cursor-pointer sm:text-[0.57rem] md:text-[0.6rem] lg:text-[0.7rem] xl:text-sm 2xl:text-md   py-2 px-2 ${pathname === data.path ? 'bg-blue-400 text-white': ''}`}
+        className={`flex rounded-md  w-full justify-between items-center cursor-pointer sm:text-[0.57rem] md:text-[0.6rem] lg:text-[0.7rem] xl:text-sm 2xl:text-md   py-2 px-2 ${pathname === data.path ? 'bg-blue-500 text-white': ''}`}
         onClick={data.nested !== undefined ? openSubHandler : routeHandler}
       >
         <div className="flex gap-2 items-center">
@@ -34,10 +34,10 @@ const NavLinkGroup: React.FC<SubMenuProps> = ({ data }) => {
           {data.nested.map((nestLink) => (
             <ul
               key={nestLink.id}
-              className="pl-4 hover:bg-slate-300 rounded-md ml-1"
+              className={`pl-4 hover:bg-slate-300 rounded-md ml-1 ${pathname === nestLink.path ? 'bg-blue-500 text-white': ''}`}
             >
               <li key={nestLink.id} className="text-[0.6rem] lg:text-[0.7rem] xl:text-sm 2xl:text-base py-2">
-                <Link href={""}>{nestLink.name}</Link>
+                <Link href={nestLink.path}>{nestLink.name}</Link>
               </li>
             </ul>
           ))}
