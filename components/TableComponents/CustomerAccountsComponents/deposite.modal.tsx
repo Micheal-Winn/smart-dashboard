@@ -36,11 +36,11 @@ const DepositeModal = ({accountNum}:{accountNum:string}) => {
 
   return (
     <Dialog>
-      <DialogTrigger className="sm:text-[0.6rem] xl:text-xs bg-blue-600 hover:bg-blue-700 text-white font-semibold sm:px-2 sm:py-1 xl:px-3  xl:py-2 rounded-full">Deposite</DialogTrigger>
-      <DialogContent>
+      <DialogTrigger className="sm:text-[0.6rem] xl:text-xs bg-blue-600 hover:bg-blue-700 text-white font-semibold px-2 py-1 sm:px-2 sm:py-1 xl:px-3  xl:py-2 rounded-full">Deposite</DialogTrigger>
+      <DialogContent className="w-[90%] md:w-auto rounded-md">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(console.log)}>
-            <section className="grid grid-cols-2 gap-x-6 gap-y-4">
+            <section className="grid md:grid-cols-2 gap-x-6 gap-y-4">
               <FormField
                 control={form.control}
                 name="accountNo"

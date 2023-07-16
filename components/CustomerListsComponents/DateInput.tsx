@@ -16,7 +16,7 @@ import {
     PopoverTrigger,
   } from "@/components/ui/popover"
 import { Button } from '../ui/button'
-import { CalendarIcon } from 'lucide-react'
+import { CalendarIcon} from 'lucide-react'
 
 const DateInput:React.FC<DateProps> = ({name,control}) => {
   return (

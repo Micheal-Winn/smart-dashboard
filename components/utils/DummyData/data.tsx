@@ -472,12 +472,12 @@ import {
     {
       id: "1",
       name: "Dashboard",
-      path: "/dashboard",
+      path: "/",
     },
     {
       id: "2",
       name: "Customer Accounts",
-      path: "/",
+      path: "",
       icon: <IconChevronRight size="1rem" stroke={1.5} />,
       nested: [
         {
@@ -488,43 +488,43 @@ import {
         {
           id: "cus2",
           name: "Create Customer",
-          path: "/createCustomer",
+          path: "/customer/create",
         },
       ],
     },
     {
       id: "3",
       name: "Customer Accounts",
-      path: "/transaction",
+      path: "",
       icon: <IconChevronRight size="1rem" stroke={1.5} />,
       nested: [
         {
           id: "acc1",
           name: "Account List",
-          path: "/account-list",
+          path: "/accounts",
         },
       ],
     },
     {
       id: "4",
       name: "Transaction Reports",
-      path: "/transaction-reports",
+      path: "",
       icon: <IconChevronRight size="1rem" stroke={1.5} />,
       nested: [
         {
           id: "tran1",
           name: "All Reports",
-          path: "/account-list",
+          path: "/transaction",
         },
         {
           id: "tran2",
           name: "Transfer Report",
-          path: "/account-list",
+          path: "/transaction/query-date",
         },
         {
           id: "tran3",
           name: "Customer Inqury",
-          path: "/account-list",
+          path: "/transaction/query-id",
         },
       ],
     },

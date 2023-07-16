@@ -42,27 +42,27 @@ export const columns: ColumnDef<DashboardCustomer>[] = [
   {
     accessorKey: "status",
     header: "Status",
-    // cell: ({ row }) => {
-    //   const status = activeStatus.find(
-    //     (status) => status.label === row.getValue("status")
-    //   );
-    //   if (!status) {
-    //     return null;
-    //   }
-    //   return (
-    //     <div className="flex w-[100px] items-center">
-    //       {status.icon && (
-    //         <status.icon
-    //           color={status.value === "active" ? "green" : "red"}
-    //           className={`mr-1 h-3 ${
-    //             status.value === "active" ? "text-green-500" : "text-red-500"
-    //           }`}
-    //         />
-    //       )}
-    //       <span>{status.label}</span>
-    //     </div>
-    //   );
-    // },
+    cell: ({ row }) => {
+      const status = activeStatus.find(
+        (status) => status.label === row.getValue("status")
+      );
+      if (!status) {
+        return null;
+      }
+      return (
+        <div className="flex w-[100px] items-center">
+          {status.icon && (
+            <status.icon
+              color={status.value === "active" ? "green" : "red"}
+              className={`mr-1 h-3 ${
+                status.value === "active" ? "text-green-500" : "text-red-500"
+              }`}
+            />
+          )}
+          <span>{status.label}</span>
+        </div>
+      );
+    },
   },
   {
     accessorKey: "account",
@@ -70,6 +70,7 @@ export const columns: ColumnDef<DashboardCustomer>[] = [
   },
   {
     id: "action",
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    cell:"..."
+    // cell: ({ row }) => <DataTableRowActions row={row} />,
   },
 ];

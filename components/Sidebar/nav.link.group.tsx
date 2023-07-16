@@ -2,31 +2,62 @@
 import React, { useMemo, useState } from "react";
 import { SibebarLists } from "@/components/utils/DummyData/data";
 import Link from "next/link";
-import { IconArrowNarrowDown,IconChevronUp,IconChevronDown } from "@tabler/icons-react";
+import {
+  IconArrowNarrowDown,
+  IconChevronUp,
+  IconChevronDown,
+} from "@tabler/icons-react";
 import { MobileNavLists } from "@/Type";
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { SheetClose } from "../ui/sheet";
 
-const NavLinkGroup: React.FC<SubMenuProps> = ({ data }) => {
+const NavLinkGroup: React.FC<SubMenuProps> = ({ data, mobile }) => {
   const router = useRouter();
   const [subNav, setSubNav] = useState(false);
   const openSubHandler = () => setSubNav(!subNav);
-  const routeHandler = ()=> router.push(`${data.path}`)
+  const routeHandler = () => router.push(`${data.path}`);
   const pathname = usePathname();
-  console.log("path",pathname)
-  console.log("render SubMenu")
+  console.log("path", pathname);
+  console.log("render SubMenu");
   return (
     <ul className="flex flex-col w-full  text-md">
       <li
-        className={`flex rounded-md  w-full justify-between items-center cursor-pointer sm:text-[0.57rem] md:text-[0.6rem] lg:text-[0.7rem] xl:text-sm 2xl:text-md   py-2 px-2 ${pathname === data.path ? 'bg-blue-500 text-white': ''}`}
+        className={`flex rounded-md  w-full justify-between items-center cursor-pointer text-sm  md:text-[0.6rem] lg:text-[0.7rem] xl:text-sm 2xl:text-md   py-2 px-2 ${
+          pathname === data.path ? "bg-blue-500 text-white" : ""
+        }`}
         onClick={data.nested !== undefined ? openSubHandler : routeHandler}
       >
-        <div className="flex gap-2 items-center">
-          {data.leftIcon}
-          <span>{data.name}</span>
-        </div>
+        {mobile ? (
+          data.nested !== undefined ? (
+            <div className="flex gap-2 items-center">
+              {data.leftIcon}
+              <span>{data.name}</span>
+            </div>
+          ) : (
+            <SheetClose>
+              <div className="flex gap-2 items-center">
+                {data.leftIcon}
+                <span>{data.name}</span>
+              </div>
+            </SheetClose>
+          )
+        ) : (
+          <div className="flex gap-2 items-center">
+            {data.leftIcon}
+            <span>{data.name}</span>
+          </div>
+        )}
         {/* <Link href={""}>{data.name} </Link> */}
-        {data.nested !== undefined && (subNav ? <IconChevronUp className="text-gray-400 cursor-pointer" size={"0.8rem"}/> : <IconChevronDown className="text-gray-400" size={"0.8rem"}/>)}
+        {data.nested !== undefined &&
+          (subNav ? (
+            <IconChevronUp
+              className="text-gray-400 cursor-pointer"
+              size={"0.8rem"}
+            />
+          ) : (
+            <IconChevronDown className="text-gray-400" size={"0.8rem"} />
+          ))}
       </li>
 
       {data.nested !== undefined && data.nested.length > 0 && subNav && (
@@ -34,11 +65,24 @@ const NavLinkGroup: React.FC<SubMenuProps> = ({ data }) => {
           {data.nested.map((nestLink) => (
             <ul
               key={nestLink.id}
-              className={`pl-4 hover:bg-slate-300 rounded-md ml-1 ${pathname === nestLink.path ? 'bg-blue-500 text-white': ''}`}
+              className={`pl-4 hover:bg-blue-500 hover:text-white rounded-md ml-1 ${
+                pathname === nestLink.path ? "bg-blue-600 text-white" : ""
+              }`}
             >
-              <li key={nestLink.id} className="text-[0.6rem] lg:text-[0.7rem] xl:text-sm 2xl:text-base py-2">
-                <Link href={nestLink.path}>{nestLink.name}</Link>
-              </li>
+              {mobile ? (
+                <SheetClose>
+                  <li key={nestLink.id} className="text-sm py-2">
+                    <Link href={nestLink.path}>{nestLink.name}</Link>
+                  </li>
+                </SheetClose>
+              ) : (
+                <li
+                  key={nestLink.id}
+                  className="text-[0.6rem] lg:text-[0.7rem] xl:text-sm 2xl:text-base py-2"
+                >
+                  <Link href={nestLink.path}>{nestLink.name}</Link>
+                </li>
+              )}
             </ul>
           ))}
         </div>
@@ -51,4 +95,5 @@ export default NavLinkGroup;
 
 interface SubMenuProps {
   data: MobileNavLists;
+  mobile?: boolean;
 }

@@ -7,7 +7,7 @@ import CreateBankAccountModal from '@/components/TableComponents/CustomerAccount
 const CustomerAccountsPage = () => {
   return (
     <main className="mt-4 px-4">
-      <section className="flex justify-between items-center w-full pl-2 overflow-hidden">
+      <section className="flex flex-col md:flex-row justify-between  w-full pl-2 overflow-hidden">
         <h2 className="lg:text-base xl:text-2xl font-semibold my-3 text-gray-800">Account Lists</h2>
         <CreateBankAccountModal/>
       </section>

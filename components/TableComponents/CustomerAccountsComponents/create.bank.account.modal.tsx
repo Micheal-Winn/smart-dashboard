@@ -48,14 +48,14 @@ const CreateBankAccountModal = () => {
 
   return (
     <Dialog>
-      <DialogTrigger className="flex items-center sm:gap-1 2xl:gap-3 bg-blue-600 text-white sm:px-2 2xl:px-4 sm:py-2 xl:py-2 rounded-sm sm:text-[0.63rem]">
+      <DialogTrigger className="flex items-center gap-3 sm:gap-1 2xl:gap-3 bg-blue-600 text-white py-2 sm:px-2 2xl:px-4 sm:py-2 xl:py-2 rounded-sm text-xs sm:text-[0.63rem] justify-center mb-3 md:mb-0">
         <IconPlus className="sm:h-4 sm:w-4" />
         <span>Create Account</span>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="w-[90%] md:w-auto rounded-md">
         <Form {...form}>
-          <form >
-            <section className="grid grid-cols-2 gap-x-6 gap-y-4">
+          <form className="">
+            <section className="grid md:grid-cols-2 gap-x-6 gap-y-4">
             <FormField
               control={form.control}
               name="accountType"
@@ -111,7 +111,7 @@ const CreateBankAccountModal = () => {
               )}
             />
             </section>
-            <div className="flex justify-end items-center">
+            <div className="flex justify-end items-center mt-3 md:mt-0">
             <ButtonUtil name="Create" className="bg-blue-600 hover:bg-blue-700" type="submit"/>
           </div>
           </form>
