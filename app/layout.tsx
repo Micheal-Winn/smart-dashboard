@@ -26,8 +26,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.className} overflow-hidden`}>
         <main className="flex h-screen min-[2000px]:container">
-          <Sidebar/>
-          {/* <CheckAuthenticated/> */}
+          {/* <Sidebar/> */}
+          <CheckAuthenticated/>
           <section className="w-full md:w-[calc(100vw-200px)]  xl:w-[calc(100vw-280px)] 2xl:w-[calc(100vw-300px)] 3xl:w-[calc(100vw-320px)] !overflow-hidden h-screen">
             {children}
           </section>
