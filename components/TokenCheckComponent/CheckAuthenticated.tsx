@@ -22,6 +22,7 @@ const CheckAuthenticated = () => {
       setAuthenticated(false);
     }
   }, []);
+  
 
   return authenticated ? <Sidebar /> : null;
 };
