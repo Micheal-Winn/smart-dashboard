@@ -48,7 +48,7 @@ const CreateBankAccountModal = () => {
 
   return (
     <Dialog>
-      <DialogTrigger className="flex items-center gap-3 sm:gap-1 2xl:gap-3 bg-blue-600 text-white py-2 sm:px-2 2xl:px-4 sm:py-2 xl:py-2 rounded-sm text-xs sm:text-[0.63rem] justify-center mb-3 md:mb-0">
+      <DialogTrigger className="flex items-center gap-3 sm:gap-1 2xl:gap-3 bg-blue-600 text-white py-2 sm:px-2 xl:px-3 sm:py-2 xl:py-2  rounded-sm  text-xs sm:text-[0.63rem] xl:text-xs justify-center mb-3 md:mb-0 mt-3">
         <IconPlus className="sm:h-4 sm:w-4" />
         <span>Create Account</span>
       </DialogTrigger>
